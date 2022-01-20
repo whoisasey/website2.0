@@ -12,7 +12,7 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: process.env.WPGRAPHQL_URL || `https://bigbuilds.ca/graphql`,
-        useACF: true,
+        // useACF: true,
         verboseOutput: true,
         type: {
           BlockEditorContentNode: { exclude: true },
@@ -53,7 +53,7 @@ module.exports = {
             },
           },
           `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
+          // `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
       },

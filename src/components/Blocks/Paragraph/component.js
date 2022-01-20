@@ -8,6 +8,8 @@ export const Component = ({ content }) => {
     setIsPage(window.location.pathname)
   }, [isPage])
 
+  // need to fix paragraph content here
+  if (content === undefined) return <div className="component_wrapper"></div>
   if (content.match(/(<([^>]+)>)/gi)?.length) {
     return (
       <div className="component_wrapper">
