@@ -1,0 +1,38 @@
+.container,
+.form_container {
+  padding-top: 2rem;
+
+  // & > h1 {
+  // margin-left: 1.5rem;
+  // }
+
+  // section {
+  //   width: 100vw;
+  // }
+}
+
+.press_page {
+  background-color: black;
+  color: white;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 810px) {
+  .container,
+  .form_container {
+    padding-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    & > h1 {
+      text-align: left;
+      // margin-left: 5.5rem;
+      margin-left: 2rem;
+    }
+
+    .component_wrapper {
+      width: 50%;
+    }
+  }
+}

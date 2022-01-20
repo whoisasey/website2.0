@@ -1,0 +1,46 @@
+footer {
+  padding: 0;
+  .footer_logo {
+    margin-top: 3rem;
+    margin-top: 3rem;
+
+    & > * {
+      margin: 1rem 0;
+    }
+  }
+  img {
+    // width: 15vw;
+    width: 50px;
+  }
+
+  .footer_icon {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@media (min-width: 810px) {
+  footer {
+    padding: 2rem 0;
+
+    // img {
+    // width: 2vw;
+    // width: 100px;
+    // }
+
+    .footer_icon {
+      flex-direction: row;
+
+      a {
+        margin: 0 4rem;
+      }
+    }
+  }
+}

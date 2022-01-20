@@ -1,0 +1,150 @@
+html {
+  background-color: $global-bg;
+  font-family: $font-family;
+  font-weight: $fontWeight-normal;
+}
+
+section {
+  margin: 1rem 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+}
+
+.wrapper,
+.service_wrapper,
+.container,
+.form_container,
+.project_wrapper {
+  max-width: 1400px;
+  // width: 75%;
+  // margin: 0 3rem;
+  margin: 1rem;
+}
+
+// .component_wrapper {
+// margin: 1rem;
+// margin: 1.5rem 1.75rem 6rem 1.75rem;
+// margin: 1.5rem 2rem 6rem 2rem;
+// }
+// .project_wrapper {
+//   width: 80%;
+//   margin: 0 auto;
+// }
+
+.section_wrapper {
+  margin: 0 2rem;
+}
+
+.button {
+  padding: 1rem 2rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    font-size: $base-font-size * 0.8;
+    width: calc(40%);
+  }
+}
+
+.buttons.component_wrapper {
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  margin-top: 3rem;
+}
+
+.prev_page,
+.next_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    // width: 2.5vw;
+    width: 5px;
+  }
+}
+
+.prev_page {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+
+  img {
+    margin-right: 0.5rem;
+  }
+}
+
+.next_page {
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+
+  img {
+    margin-left: 0.5rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .wrapper,
+  .service_wrapper,
+  .container,
+  .form_container {
+    max-width: 1400px;
+    // width: 75%;
+    margin: 0 3rem;
+  }
+  .buttons.component_wrapper {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 810px) {
+  // .buttons.component_wrapper {
+  //   width: 80%;
+  // }
+
+  .buttons {
+    a {
+      font-size: initial;
+      width: initial;
+    }
+  }
+
+  .wrapper,
+  .component_wrapper,
+  .project_wrapper {
+    max-width: 1400px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .component_wrapper {
+    margin: 1.5rem auto 6rem auto;
+  }
+
+  .section_wrapper {
+    margin: 0 5rem;
+  }
+
+  // .prev_page,
+  // .next_page {
+  //   img {
+  //     width: 0.5vw;
+  //   }
+  // }
+}

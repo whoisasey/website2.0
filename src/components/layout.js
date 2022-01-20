@@ -1,47 +1,46 @@
-import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import parse from "html-react-parser"
+import React, { useState, useEffect, Fragment } from "react"
+import { Navigation } from "../components/Navigation/index"
+import Logo from "../images/b_rbg-dark signature.png"
+import { AiOutlineInstagram } from "react-icons/ai"
 
-const Layout = ({ isHomePage, children }) => {
-  const {
-    wp: {
-      generalSettings: { title },
-    },
-  } = useStaticQuery(graphql`
-    query LayoutQuery {
-      wp {
-        generalSettings {
-          title
-          description
-        }
-      }
-    }
-  `)
+const Layout = ({ children }) => {
+  const [isPage, setIsPage] = useState(null)
+  const press = "/press/"
+
+  useEffect(() => {
+    setIsPage(window.location.pathname)
+  }, [isPage])
 
   return (
-    <div className="global-wrapper" data-is-root-path={isHomePage}>
-      <header className="global-header">
-        {isHomePage ? (
-          <h1 className="main-heading">
-            <Link to="/">{parse(title)}</Link>
-          </h1>
-        ) : (
-          <Link className="header-link-home" to="/">
-            {title}
-          </Link>
-        )}
-      </header>
-
-      <main>{children}</main>
-
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
-        {` `}
-        And <a href="https://wordpress.org/">WordPress</a>
+    <Fragment>
+      <div className={isPage === press ? `press_page` : null}>
+        <header>
+          <Navigation />
+        </header>
+        <main>{children}</main>
+      </div>
+      <footer className="wrapper">
+        <div className="footer_logo">
+          <img src={Logo} alt="Big Builds Dark Signature Logo" />
+          <a href="tel:647-456-4956">
+            <p>647-456-4956</p>
+          </a>
+          <a href="mailto:info@bigbuilds.ca">
+            <p> info@bigbuilds.ca</p>
+          </a>
+          <div className="footer_icon">
+            <p>Toronto, Canada</p>
+            <a
+              href="https://www.instagram.com/bigbuilds.ca/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <AiOutlineInstagram />
+            </a>
+          </div>
+        </div>
       </footer>
-    </div>
+    </Fragment>
   )
 }
 
