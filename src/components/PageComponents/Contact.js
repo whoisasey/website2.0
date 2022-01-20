@@ -3,6 +3,7 @@ import { navigate, graphql, useStaticQuery } from "gatsby"
 import gql from "graphql-tag"
 // import { Mutation } from "react-apollo"
 import Layout from "../layout"
+import parse from "html-react-parser"
 import { v4 as uuidv4 } from "uuid"
 import BlockRenderer from "../Blocks/BlockRenderer"
 
@@ -43,19 +44,13 @@ const Contact = () => {
   const {
     wpPage: { blocks },
   } = useStaticQuery(query)
-  // console.log(blocks)
+
   return (
     <Layout>
       <div className="form_container">
         <div className="left">
           <h1>Contact Us</h1>
-
-          <p>
-            Further case studies available upon request. Please provide some
-            information on your project or goals and we’ll move the conversation
-            on from there.
-          </p>
-
+          {parse(blocks[0].originalContent)}
           <hr />
           <p>Toronto, Canada </p>
           <a
@@ -167,27 +162,15 @@ const Contact = () => {
   )
 }
 
+export default Contact
+
 export const query = graphql`
   query specialProjectsQuery {
     wpPage(slug: { eq: "contact" }) {
       blocks {
         name
-        ... on WpCoreParagraphBlock {
-          attributes {
-            ... on WpCoreParagraphBlockAttributes {
-              content
-            }
-          }
-        }
+        originalContent
       }
     }
   }
 `
-
-// import React from "react"
-
-// const Contact = () => {
-//   return <h1>contact</h1>
-// }
-
-export default Contact

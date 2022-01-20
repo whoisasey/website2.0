@@ -6,10 +6,20 @@ import { Gallery } from "../Gallery"
 import { Buttons } from "../Buttons"
 import { Quote } from "../Quotes"
 
-export const Component = ({ name, attributes, innerBlocks }) => {
+export const Component = ({
+  name,
+  attributes,
+  innerBlocks,
+  originalContent,
+}) => {
   const ComponentToRender = componentMapping[name] || PlaceholderComponent
   return (
-    <ComponentToRender name={name} {...attributes} innerBlocks={innerBlocks} />
+    <ComponentToRender
+      name={name}
+      {...attributes}
+      innerBlocks={innerBlocks}
+      originalContent={originalContent}
+    />
   )
 }
 

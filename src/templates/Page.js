@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import React, { Fragment, useEffect, useState, createElement } from "react"
 import { BlockRenderer } from "../components/Blocks/BlockRenderer"
 import { Showcase } from "../components/PageComponents/Showcase"
-// import Contact from "../components/PageComponents/Contact"
+import Contact from "../components/PageComponents/Contact"
 import Services from "../components/PageComponents/Services"
 import BackgroundImage from "gatsby-background-image"
 import { convertToBgImage } from "gbimage-bridge"
@@ -24,7 +24,7 @@ const Page = ({
 }) => {
   const [isPage, setIsPage] = useState(null)
   const showcase = "/showcase/"
-  // const contact = "/contact/"
+  const contact = "/contact/"
   const services = "/services/"
   useEffect(() => {
     setIsPage(window.location.pathname)
@@ -45,9 +45,9 @@ const Page = ({
   if (isPage === showcase) {
     return <Showcase />
   }
-  // if (isPage === contact) {
-  //   return <Contact />
-  // }
+  if (isPage === contact) {
+    return <Contact />
+  }
   if (isPage === services) {
     return <Services />
   } else {
@@ -55,9 +55,10 @@ const Page = ({
       <Layout>
         <div className="container">
           <h1>{title}</h1>
-          {blocks.map(block => {
+          {blocks.map((block, i) => {
+            // console.log(block)
             return (
-              <Fragment>
+              <Fragment key={i}>
                 <BlockRenderer {...block} />
               </Fragment>
             )
@@ -89,6 +90,7 @@ export const query = graphql`
       title
       blocks {
         name
+        originalContent
         ... on WpCoreParagraphBlock {
           dynamicContent
           originalContent
