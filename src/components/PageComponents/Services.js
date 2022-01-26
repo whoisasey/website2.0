@@ -1,37 +1,15 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { sortedNodes } from "../../helpers"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import Layout from "../layout"
 
-const query = graphql`
-  query serviceQuery {
-    allWpService {
-      nodes {
-        uri
-        databaseId
-        servicesPostType {
-          heading
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
 const Services = () => {
   const {
     allWpService: { nodes },
   } = useStaticQuery(query)
 
-  // console.log("services page")
   return (
-    <Layout>
+    <Fragment>
       <section className="wrapper services_gallery">
         <h1>Services</h1>
         <div className="block_gallery columns_2">
@@ -61,8 +39,29 @@ const Services = () => {
           </ul>
         </div>
       </section>
-    </Layout>
+    </Fragment>
   )
 }
+
+export const query = graphql`
+  query serviceQuery {
+    allWpService {
+      nodes {
+        uri
+        databaseId
+        servicesPostType {
+          heading
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 export default Services

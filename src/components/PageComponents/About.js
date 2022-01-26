@@ -1,0 +1,103 @@
+import React, { Fragment, createElement } from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import { BlockRenderer } from "../Blocks/BlockRenderer"
+import BackgroundImage from "gatsby-background-image"
+import { convertToBgImage } from "gbimage-bridge"
+import { getImage } from "gatsby-plugin-image"
+
+const About = () => {
+  const {
+    wpPage: {
+      title,
+      blocks,
+      valuesGroup,
+      coverGroup: {
+        coverText: { content, fontSize },
+        coverImage,
+        coverButton: { buttonText, buttonColor, buttonTextColor },
+      },
+    },
+  } = useStaticQuery(query)
+
+  const image = coverImage ? getImage(coverImage.localFile) : null
+  const bgImage = convertToBgImage(image)
+
+  const coverText = createElement(`h${fontSize}`, {}, content)
+
+  return (
+    <Fragment>
+      <div className="container">
+        <h1>{title}</h1>
+        {blocks.map((block, i) => {
+          return (
+            <Fragment key={i}>
+              <BlockRenderer {...block} />
+            </Fragment>
+          )
+        })}
+      </div>
+      <BackgroundImage Tag="section" {...bgImage} preserveStackingContext>
+        <div className="wrapper cover">
+          {coverText}
+          <a
+            href="mailto:info@bigbuilds.ca"
+            className="button"
+            style={{
+              color: `${buttonTextColor}`,
+              backgroundColor: `${buttonColor}`,
+            }}
+          >
+            {buttonText}
+          </a>
+        </div>
+      </BackgroundImage>
+    </Fragment>
+  )
+}
+
+export const query = graphql`
+  query aboutUsPageQuery {
+    wpPage(databaseId: { eq: 531 }) {
+      title
+      blocks {
+        name
+        ... on WpCoreParagraphBlock {
+          originalContent
+          attributes {
+            ... on WpCoreParagraphBlockAttributes {
+              align
+              anchor
+              content
+            }
+          }
+        }
+      }
+      valuesGroup {
+        valuesTitle {
+          text
+          fontsize
+        }
+        valuesDescription
+      }
+      coverGroup {
+        coverText {
+          content
+          fontSize
+        }
+        coverImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        coverButton {
+          buttonText
+          buttonColor
+          buttonTextColor
+        }
+      }
+    }
+  }
+`
+export default About

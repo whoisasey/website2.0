@@ -4,6 +4,7 @@ import { BlockRenderer } from "./../BlockRenderer"
 export const Component = ({ innerBlocks, ...attributes }) => {
   const { customOverlayColor, url } = attributes
 
+  console.log(innerBlocks)
   return (
     <section>
       <div

@@ -10,6 +10,7 @@ export const Component = ({
   name,
   attributes,
   innerBlocks,
+  content,
   originalContent,
 }) => {
   const ComponentToRender = componentMapping[name] || PlaceholderComponent
@@ -18,6 +19,7 @@ export const Component = ({
       name={name}
       {...attributes}
       innerBlocks={innerBlocks}
+      content={content}
       originalContent={originalContent}
     />
   )

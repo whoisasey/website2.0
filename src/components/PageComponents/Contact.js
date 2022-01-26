@@ -1,11 +1,9 @@
 import React, { useState, Fragment } from "react"
-import { navigate, graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import gql from "graphql-tag"
 // import { Mutation } from "react-apollo"
-import Layout from "../layout"
-import parse from "html-react-parser"
 import { v4 as uuidv4 } from "uuid"
-import BlockRenderer from "../Blocks/BlockRenderer"
+import { BlockRenderer } from "../Blocks/BlockRenderer"
 
 // let uuid = uuidv4()
 
@@ -46,11 +44,17 @@ const Contact = () => {
   } = useStaticQuery(query)
 
   return (
-    <Layout>
+    <Fragment>
       <div className="form_container">
-        <div className="left">
+        <div className="">
           <h1>Contact Us</h1>
-          {parse(blocks[0].originalContent)}
+          {blocks.map((block, i) => {
+            return (
+              <Fragment key={i}>
+                <BlockRenderer {...block} />
+              </Fragment>
+            )
+          })}
           <hr />
           <p>Toronto, Canada </p>
           <a
@@ -158,7 +162,7 @@ const Contact = () => {
           )}
         </Mutation> */}
       </div>
-    </Layout>
+    </Fragment>
   )
 }
 

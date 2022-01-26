@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from "react"
+import parse from "html-react-parser"
 
-export const Component = ({ originalContent }) => {
+export const Component = ({ content, originalContent }) => {
   const [isPage, setIsPage] = useState(null)
-  const press = "/press/"
+  const contact = "/contact/"
 
   useEffect(() => {
     setIsPage(window.location.pathname)
   }, [isPage])
 
-  // need to fix paragraph content here
-  // if (content === undefined) return <div className="component_wrapper"></div>
   if (originalContent.match(/(<([^>]+)>)/gi)?.length) {
     return (
-      <div className="component_wrapper">
-        <p dangerouslySetInnerHTML={{ __html: originalContent }} />
-      </div>
+      <p
+        className={isPage === contact ? null : "component_wrapper"}
+        style={isPage === contact ? { margin: "1rem 0" } : null}
+      >
+        {parse(originalContent)}
+      </p>
     )
   }
-
-  return (
-    <div className={isPage === press ? null : `component_wrapper`}>
-      <p>{originalContent}</p>
-    </div>
-  )
 }
 
 Component.displayName = "Paragraph"
