@@ -12,7 +12,7 @@ const Showcase = () => {
     <Fragment>
       <section className="container showcase">
         <h1>Showcase</h1>
-        <div className=" block_gallery columns_3">
+        <div className={` block_gallery `}>
           <ul className="blocks_gallery_grid">
             {sortedNodes(nodes).map(
               ({

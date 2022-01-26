@@ -5,6 +5,7 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .blocks_gallery_item {
@@ -58,10 +59,10 @@
 }
 
 .showcase {
-  .block_gallery.columns_3 {
+  flex-direction: column;
+  .block_gallery {
     .blocks_gallery_item {
-      width: calc((100%) - 1em);
-      // margin-right: 1em;
+      width: calc((100% / 4) - 1em);
     }
   }
 }
