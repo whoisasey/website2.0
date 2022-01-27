@@ -10,7 +10,7 @@ const Services = () => {
 
   return (
     <Fragment>
-      <section className="wrapper services_gallery">
+      <section className="container services_gallery">
         <h1>Services</h1>
         <div className="block_gallery columns_2">
           <ul className="blocks_gallery_grid">
@@ -43,7 +43,7 @@ const Services = () => {
                 <figure>
                   <img
                     src="https://bigbuilds.ca/wp-content/uploads/2022/01/alex-perri-bmM_IdLd1SA-unsplash-scaled.jpeg"
-                    alt="splash imaqge of green plant"
+                    alt="splash image of green plant"
                   />
                 </figure>
               </li>
