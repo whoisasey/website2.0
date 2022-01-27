@@ -43,7 +43,7 @@ const Services = () => {
                 <figure>
                   <img
                     src="https://bigbuilds.ca/wp-content/uploads/2022/01/alex-perri-bmM_IdLd1SA-unsplash-scaled.jpeg"
-                    alt="splash image of green plant"
+                    alt="green plant"
                   />
                 </figure>
               </li>

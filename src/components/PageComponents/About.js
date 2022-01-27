@@ -10,7 +10,6 @@ const About = () => {
     wpPage: {
       title,
       blocks,
-      valuesGroup,
       coverGroup: {
         coverText: { content, fontSize },
         coverImage,
@@ -71,13 +70,6 @@ export const query = graphql`
             }
           }
         }
-      }
-      valuesGroup {
-        valuesTitle {
-          text
-          fontsize
-        }
-        valuesDescription
       }
       coverGroup {
         coverText {
