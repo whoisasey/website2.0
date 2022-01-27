@@ -6,9 +6,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 const Services = () => {
   const {
     allWpService: { nodes },
-    allWpMediaItem,
   } = useStaticQuery(query)
-  const imageFour = getImage(allWpMediaItem.nodes[0].localFile)
 
   return (
     <Fragment>
@@ -43,9 +41,9 @@ const Services = () => {
             <div className="blocks_gallery_item">
               <li>
                 <figure>
-                  <GatsbyImage
-                    image={imageFour}
-                    alt="splash image of green plant"
+                  <img
+                    src="https://bigbuilds.ca/wp-content/uploads/2022/01/alex-perri-bmM_IdLd1SA-unsplash-scaled.jpeg"
+                    alt="splash imaqge of green plant"
                   />
                 </figure>
               </li>
@@ -71,15 +69,6 @@ export const query = graphql`
                 gatsbyImageData
               }
             }
-          }
-        }
-      }
-    }
-    allWpMediaItem(filter: { title: { eq: "plant" } }) {
-      nodes {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
           }
         }
       }
