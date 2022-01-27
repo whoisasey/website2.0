@@ -2,7 +2,7 @@ import React, { createElement } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Image from "gatsby-image"
-// import { BlockRenderer } from "../components/Blocks/BlockRenderer"
+import { BlockRenderer } from "../components/Blocks/BlockRenderer"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import parse from "html-react-parser"
@@ -53,20 +53,29 @@ const Homepage = ({
       </section>
 
       <section className="services_links">
-        <h2>
-          <Link to={linkOne.link.uri}>{linkOne.title}</Link>
-        </h2>
-        <h2>
-          <Link to={linkTwo.link.uri}>{linkTwo.title} </Link>
-        </h2>
-        <h2>
-          <Link to={linkThree.link.uri}>{linkThree.title} </Link>
-        </h2>
-        <h2>
-          <Link to={linkFour.link.uri}>{linkFour.title}</Link>
-        </h2>
+        {linkOne.link ? (
+          <h2>
+            <Link to={linkOne.link.uri}>{linkOne.title}</Link>
+          </h2>
+        ) : null}
+        {linkTwo.link ? (
+          <h2>
+            <Link to={linkTwo.link.uri}>{linkTwo.title} </Link>
+          </h2>
+        ) : null}
+        {linkThree.link ? (
+          <h2>
+            <Link to={linkThree.link.uri}>{linkThree.title} </Link>
+          </h2>
+        ) : null}
+        {linkFour.link ? (
+          <h2>
+            <Link to={linkFour.link.uri}>{linkFour.title}</Link>
+          </h2>
+        ) : null}
       </section>
       {/* {blocks.map((block, i) => {
+        console.log(block)
         return <BlockRenderer {...block} key={i} />
       })} */}
     </Layout>
@@ -139,11 +148,13 @@ export const query = graphql`
       }
       blocks {
         name
-
+        originalContent
         ... on WpCoreCoverBlock {
           innerBlocks {
             name
+            originalContent
             ... on WpCoreParagraphBlock {
+              originalContent
               attributes {
                 ... on WpCoreParagraphBlockAttributes {
                   content
@@ -151,6 +162,7 @@ export const query = graphql`
               }
             }
             ... on WpCoreHeadingBlock {
+              originalContent
               attributes {
                 ... on WpCoreHeadingBlockAttributes {
                   content
@@ -161,6 +173,7 @@ export const query = graphql`
             ... on WpCoreButtonsBlock {
               innerBlocks {
                 name
+                originalContent
                 ... on WpCoreButtonBlock {
                   attributes {
                     ... on WpCoreButtonBlockAttributes {
@@ -174,6 +187,7 @@ export const query = graphql`
               }
             }
           }
+          originalContent
           attributes {
             ... on WpCoreCoverBlockAttributes {
               url
