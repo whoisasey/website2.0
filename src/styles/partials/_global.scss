@@ -22,7 +22,7 @@ li {
 .form_container,
 .project_wrapper {
   max-width: 1400px;
-  // width: 75%;
+  width: 90%;
   // margin: 0 3rem;
   margin: 1rem auto;
 }
@@ -70,7 +70,6 @@ li {
   align-items: center;
 
   img {
-    // width: 2.5vw;
     width: 5px;
   }
 }
@@ -101,11 +100,17 @@ li {
   .container,
   .form_container {
     max-width: 1400px;
-    // width: 75%;
-    margin: 0;
-    // margin-left: 3rem;
+    margin: 0 auto;
+    width: 90%;
   }
   .buttons.component_wrapper {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .wrapper,
+  .component_wrapper,
+  .project_wrapper {
     width: 90%;
     margin: 0 auto;
   }
@@ -138,11 +143,4 @@ li {
   .section_wrapper {
     margin: 0 5rem;
   }
-
-  // .prev_page,
-  // .next_page {
-  //   img {
-  //     width: 0.5vw;
-  //   }
-  // }
 }
