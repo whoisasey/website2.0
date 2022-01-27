@@ -19,7 +19,7 @@ const Showcase = ({
     <Layout>
       <div className="project_wrapper">
         <h1>{pageContext.title}</h1>
-        <div className={`block_gallery columns_${columns}`}>
+        <div className={`block_gallery columns_2`}>
           <ul className="blocks_gallery_grid">
             {galleryArry.map(image => {
               if (image[1] !== null) {
