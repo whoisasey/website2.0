@@ -24,7 +24,7 @@ li {
   max-width: 1400px;
   width: 90%;
   // margin: 0 3rem;
-  margin: 1rem auto;
+  // margin: 1rem auto;
 }
 
 .section_wrapper {
@@ -120,6 +120,14 @@ li {
   // .buttons.component_wrapper {
   //   width: 80%;
   // }
+  .wrapper,
+  .service_wrapper,
+  .container,
+  .form_container {
+    max-width: 1400px;
+    margin: 0 3rem;
+    width: 90%;
+  }
 
   .buttons {
     a {

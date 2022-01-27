@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
         </header>
         <main>{children}</main>
       </div>
-      <footer className="wrapper">
+      <footer className="container">
         <div className="footer_logo">
           <img src={Logo} alt="Big Builds Dark Signature Logo" />
           <a href="tel:647-456-4956">
