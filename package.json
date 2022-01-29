@@ -49,6 +49,7 @@
     "gatsby-source-wordpress": "^6.5.2",
     "gatsby-transformer-remark": "^5.1.1",
     "gatsby-transformer-sharp": "^4.5.0",
+    "gbimage-bridge": "^0.2.1",
     "graphql": "^15.8.0",
     "html-react-parser": "^1.1.1",
     "lodash": "^4.17.20",
