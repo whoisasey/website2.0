@@ -42,28 +42,43 @@ module.exports = {
         },
       },
     },
+    `gatsby-remark-prismjs`,
+    `gatsby-remark-copy-linked-files`,
+    `gatsby-remark-smartypants`,
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-remark-images`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 630,
-            },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
-          `gatsby-remark-prismjs`,
-          // `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-        ],
+        maxWidth: 630,
       },
     },
+    {
+      resolve: `gatsby-remark-responsive-iframe`,
+      options: {
+        wrapperStyle: `margin-bottom: 1.0725rem`,
+      },
+    },
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {
+    //     plugins: [
+    //       // {
+    //       //   resolve: `gatsby-remark-images`,
+    //       //   options: {
+    //       //     maxWidth: 630,
+    //       //   },
+    //       // },
+    //       // {
+    //       //   resolve: `gatsby-remark-responsive-iframe`,
+    //       //   options: {
+    //       //     wrapperStyle: `margin-bottom: 1.0725rem`,
+    //       //   },
+    //       // },
+    //       // `gatsby-remark-prismjs`,
+    //       // `gatsby-remark-copy-linked-files`,
+    //       // `gatsby-remark-smartypants`,
+    //     ],
+    //   },
+    // },
     {
       resolve: `gatsby-transformer-sharp`,
       options: {
