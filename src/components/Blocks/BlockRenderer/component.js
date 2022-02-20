@@ -1,9 +1,7 @@
 import React from "react"
 import { Heading } from "../Heading"
 import { Paragraph } from "../Paragraph"
-import { Cover } from "../Cover"
 import { Gallery } from "../Gallery"
-import { Buttons } from "../Buttons"
 import { Quote } from "../Quotes"
 
 export const Component = ({
@@ -14,6 +12,7 @@ export const Component = ({
   originalContent,
 }) => {
   const ComponentToRender = componentMapping[name] || PlaceholderComponent
+
   return (
     <ComponentToRender
       name={name}
@@ -34,8 +33,6 @@ Component.displayName = "BlockRenderer"
 const componentMapping = {
   "core/heading": Heading,
   "core/paragraph": Paragraph,
-  "core/cover": Cover,
   "core/gallery": Gallery,
   "core/quote": Quote,
-  "core/buttons": Buttons,
 }

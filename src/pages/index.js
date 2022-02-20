@@ -2,7 +2,7 @@ import React, { createElement } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Image from "gatsby-image"
-import { BlockRenderer } from "../components/Blocks/BlockRenderer"
+import { Cover } from "../components/Blocks/Cover"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import parse from "html-react-parser"
@@ -13,7 +13,7 @@ const Homepage = ({
       valuesGroup: { valuesTitle, valuesDescription },
       quickLinks: { linkFour, linkOne, linkTwo, linkThree },
       heroTextAndImage: { fullWidthImage, heroText },
-      blocks,
+      customButton,
     },
   },
 }) => {
@@ -74,10 +74,8 @@ const Homepage = ({
           </h2>
         ) : null}
       </section>
-      {/* {blocks.map((block, i) => {
-        console.log(block)
-        return <BlockRenderer {...block} key={i} />
-      })} */}
+
+      <Cover {...customButton} />
     </Layout>
   )
 }
@@ -146,55 +144,14 @@ export const query = graphql`
           title
         }
       }
-      blocks {
-        name
-        originalContent
-        ... on WpCoreCoverBlock {
-          innerBlocks {
-            name
-            originalContent
-            ... on WpCoreParagraphBlock {
-              originalContent
-              attributes {
-                ... on WpCoreParagraphBlockAttributes {
-                  content
-                }
-              }
-            }
-            ... on WpCoreHeadingBlock {
-              originalContent
-              attributes {
-                ... on WpCoreHeadingBlockAttributes {
-                  content
-                  level
-                }
-              }
-            }
-            ... on WpCoreButtonsBlock {
-              innerBlocks {
-                name
-                originalContent
-                ... on WpCoreButtonBlock {
-                  attributes {
-                    ... on WpCoreButtonBlockAttributes {
-                      text
-                      textColor
-                      backgroundColor
-                      url
-                    }
-                  }
-                }
-              }
-            }
-          }
-          originalContent
-          attributes {
-            ... on WpCoreCoverBlockAttributes {
-              url
-              customOverlayColor
-            }
-          }
-        }
+      customButton {
+        backgroundColour
+        buttonBackgroundColour
+        buttonTextColour
+        contactText
+        content
+        contentHeader
+        textColour
       }
     }
   }

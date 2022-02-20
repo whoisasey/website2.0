@@ -1,28 +1,37 @@
-import React from "react"
-import { BlockRenderer } from "./../BlockRenderer"
+import React, { createElement } from "react"
 
-export const Component = ({ innerBlocks, ...attributes }) => {
-  const { customOverlayColor, url } = attributes
-
-  console.log(innerBlocks)
+export const Component = ({ ...customButton }) => {
+  const {
+    backgroundColour,
+    buttonBackgroundColour,
+    buttonTextColour,
+    contactText,
+    content,
+    contentHeader,
+    textColour,
+  } = customButton
   return (
-    <section>
-      <div
+    <section
+      className="homepage_cover"
+      style={{ backgroundColor: `${backgroundColour}`, color: `${textColour}` }}
+    >
+      {createElement(
+        "h2",
+        { style: { color: `${textColour}` } },
+        contentHeader
+      )}
+      {createElement("p", {}, content)}
+      <a
+        href="mailto:info@bigbuilds.ca"
+        target="_blank"
+        rel="noreferrer"
         style={{
-          background: `${customOverlayColor}`,
-          backgroundImage: url ? `url(${url})` : null,
+          backgroundColor: `${buttonBackgroundColour}`,
+          color: `${buttonTextColour}`,
         }}
-        className="cover"
       >
-        {innerBlocks.map(({ name, attributes, innerBlocks }, idx) => (
-          <BlockRenderer
-            key={idx}
-            name={name}
-            attributes={attributes}
-            innerBlocks={innerBlocks}
-          />
-        ))}
-      </div>
+        {contactText}
+      </a>
     </section>
   )
 }
