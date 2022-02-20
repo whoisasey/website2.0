@@ -1,7 +1,7 @@
 import React, { createElement } from "react"
 
-export const Component = ({ content, textAlign, level }) => {
-  console.log(content)
+export const Component = ({ content, textAlign, level, originalContent }) => {
+  // console.log(originalContent)
   if (content !== undefined && content.includes("href")) {
     return (
       <div className="services_links">

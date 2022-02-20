@@ -35,8 +35,13 @@ const About = () => {
           )
         })}
       </div>
-      <BackgroundImage Tag="section" {...bgImage} preserveStackingContext>
-        <div className="wrapper cover">
+      <BackgroundImage
+        Tag="section"
+        {...bgImage}
+        preserveStackingContext
+        className="background_cover"
+      >
+        <div className="cover">
           {coverText}
           <a
             href="mailto:info@bigbuilds.ca"

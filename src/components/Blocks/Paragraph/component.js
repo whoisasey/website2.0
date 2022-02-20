@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import parse from "html-react-parser"
 
 export const Component = ({ content, originalContent }) => {
   const [isPage, setIsPage] = useState(null)
@@ -14,9 +13,8 @@ export const Component = ({ content, originalContent }) => {
       <p
         className={isPage === contact ? null : "component_wrapper"}
         style={isPage === contact ? { margin: "1rem 0" } : null}
-      >
-        {parse(originalContent)}
-      </p>
+        dangerouslySetInnerHTML={{ __html: originalContent }}
+      ></p>
     )
   }
 }
