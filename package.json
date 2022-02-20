@@ -46,7 +46,6 @@
     "gatsby-remark-responsive-iframe": "^5.5.0",
     "gatsby-remark-smartypants": "^5.5.0",
     "gatsby-source-filesystem": "^4.0.0",
-    "gatsby-source-instagram": "^0.9.0",
     "gatsby-source-wordpress": "^6.5.2",
     "gatsby-transformer-remark": "^5.1.1",
     "gatsby-transformer-sharp": "^4.5.0",
