@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     fetch(
-      "https://graph.instagram.com/me/media?fields=id,media_url,permalink,media_type,thumbnail_url&access_token=IGQVJWU2Q4RFlPcml4bVpsQ19vS2tNbnlNa3JIb1pTRUdsei1VbTN6bnRhVGZA0R015bllLWkljSDFwdUVzYkJubUJCZA2hiREZAXdHg1Y3lzbjdvZAXo1U3pmTENvTzA1N19RTXU0NHZAaT0F1OFhfa1pWeFZAGTy1RSEtnSVQ4"
+      "https://graph.instagram.com/me/media?fields=id,media_url,permalink,media_type,thumbnail_url,caption&access_token=IGQVJWU2Q4RFlPcml4bVpsQ19vS2tNbnlNa3JIb1pTRUdsei1VbTN6bnRhVGZA0R015bllLWkljSDFwdUVzYkJubUJCZA2hiREZAXdHg1Y3lzbjdvZAXo1U3pmTENvTzA1N19RTXU0NHZAaT0F1OFhfa1pWeFZAGTy1RSEtnSVQ4"
     )
       .then(res => res.json())
       .then(response => setFeed(response.data))
@@ -31,19 +31,19 @@ const Layout = ({ children }) => {
 
   const instagramFeed = () => {
     return feed.map(
-      ({ media_url, permalink, media_type, thumbnail_url }, i) => {
+      ({ media_url, permalink, media_type, thumbnail_url, caption }, i) => {
         if (!thumbnail_url) {
           return (
-            <li>
+            <li key={i}>
               <a href={permalink} target="_blank" rel="noreferrer">
-                <img src={media_url} alt="" />
+                <img src={media_url} alt={caption} />
               </a>
             </li>
           )
         } else
           return (
-            <li>
-              <a href={media_url}>
+            <li key={i}>
+              <a href={media_url} target="_blank" rel="noreferrer">
                 <img src={thumbnail_url} alt="" />
               </a>
             </li>
@@ -53,9 +53,9 @@ const Layout = ({ children }) => {
   }
 
   const fakeFeed = () => {
-    return fakeImage.map(({ thumbnailUrl, title, url }) => {
+    return fakeImage.map(({ thumbnailUrl, title, url }, i) => {
       return (
-        <li>
+        <li key={i}>
           <a href={url}>
             <img src={thumbnailUrl} alt={title} />
           </a>
