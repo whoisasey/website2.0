@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     fetch(
-      "https://graph.instagram.com/me/media?fields=id,media_url,permalink,media_type,thumbnail_url,caption&access_token=IGQVJWU2Q4RFlPcml4bVpsQ19vS2tNbnlNa3JIb1pTRUdsei1VbTN6bnRhVGZA0R015bllLWkljSDFwdUVzYkJubUJCZA2hiREZAXdHg1Y3lzbjdvZAXo1U3pmTENvTzA1N19RTXU0NHZAaT0F1OFhfa1pWeFZAGTy1RSEtnSVQ4"
+      `https://graph.instagram.com/${process.env.GATSBY_INSTAGRAM_ID}/media?fields=id,media_url,permalink,media_type,thumbnail_url,caption&access_token=${process.env.GATSBY_INSTAGRAM_TOKEN}`
     )
       .then(res => res.json())
       .then(response => setFeed(response.data))
@@ -53,15 +53,17 @@ const Layout = ({ children }) => {
   }
 
   const fakeFeed = () => {
-    return fakeImage.map(({ thumbnailUrl, title, url }, i) => {
-      return (
-        <li key={i}>
-          <a href={url}>
-            <img src={thumbnailUrl} alt={title} />
-          </a>
-        </li>
-      )
-    })
+    if (process.env.NODE_ENV === "development") {
+      return fakeImage.map(({ thumbnailUrl, title, url }, i) => {
+        return (
+          <li key={i}>
+            <a href={url}>
+              <img src={thumbnailUrl} alt={title} />
+            </a>
+          </li>
+        )
+      })
+    }
   }
   return (
     <Fragment>
