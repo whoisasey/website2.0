@@ -21,12 +21,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: `41900807260`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-sass`,
       options: {
         implementation: require(`node-sass`),
