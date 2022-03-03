@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
       `https://graph.instagram.com/${process.env.GATSBY_INSTAGRAM_ID}/media?fields=id,media_url,permalink,media_type,thumbnail_url,caption&access_token=${process.env.GATSBY_INSTAGRAM_TOKEN}`
     )
       .then(res => res.json())
-      .then(response => setFeed(response.data))
+      .then(response => setFeed(response.data.slice(0, 12)))
       .catch(error => console.log(error))
   }, [])
 
