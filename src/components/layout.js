@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     fetch(
-      `https://graph.instagram.com/${process.env.GATSBY_INSTAGRAM_ID}/media?fields=id,media_url,permalink,media_type,thumbnail_url,caption&access_token=${process.env.GATSBY_INSTAGRAM_TOKEN}`
+      `https://graph.instagram.com/${process.env.GATSBY_INSTAGRAM_ID}/media?fields=id,media_url,permalink,thumbnail_url,caption&access_token=${process.env.GATSBY_INSTAGRAM_TOKEN}`
     )
       .then(res => res.json())
       .then(response => setFeed(response.data.slice(0, 12)))
@@ -30,26 +30,24 @@ const Layout = ({ children }) => {
   }, [])
 
   const instagramFeed = () => {
-    return feed.map(
-      ({ media_url, permalink, media_type, thumbnail_url, caption }, i) => {
-        if (!thumbnail_url) {
-          return (
-            <li key={i}>
-              <a href={permalink} target="_blank" rel="noreferrer">
-                <img src={media_url} alt={caption} />
-              </a>
-            </li>
-          )
-        } else
-          return (
-            <li key={i}>
-              <a href={media_url} target="_blank" rel="noreferrer">
-                <img src={thumbnail_url} alt="" />
-              </a>
-            </li>
-          )
-      }
-    )
+    return feed.map(({ media_url, permalink, thumbnail_url, caption }, i) => {
+      if (!thumbnail_url) {
+        return (
+          <li key={i}>
+            <a href={permalink} target="_blank" rel="noreferrer">
+              <img src={media_url} alt={caption} />
+            </a>
+          </li>
+        )
+      } else
+        return (
+          <li key={i}>
+            <a href={media_url} target="_blank" rel="noreferrer">
+              <img src={thumbnail_url} alt="" />
+            </a>
+          </li>
+        )
+    })
   }
 
   const fakeFeed = () => {
