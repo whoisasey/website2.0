@@ -1,5 +1,5 @@
-require(`dotenv`).config({
-  path: `.env`,
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
@@ -20,6 +20,7 @@ module.exports = {
         presets: null,
       },
     },
+
     {
       resolve: `gatsby-plugin-sass`,
       options: {

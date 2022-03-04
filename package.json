@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.7",
+    "dotenv": "^16.0.0",
     "gatsby": "^4.0.0",
     "gatsby-background-image": "^1.6.0",
     "gatsby-image": "^3.11.0",
