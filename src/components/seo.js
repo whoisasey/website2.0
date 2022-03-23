@@ -5,13 +5,17 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
+const isBrowser = typeof window !== "undefined"
+
 const Seo = ({ description, lang, meta, title }) => {
-  const { wp, wpUser } = useStaticQuery(
+  const {
+    wp: { generalSettings },
+  } = useStaticQuery(
     graphql`
       query {
         wp {
@@ -20,17 +24,20 @@ const Seo = ({ description, lang, meta, title }) => {
             description
           }
         }
-
-        # if there's more than one user this would need to be filtered to the main user
-        wpUser {
-          twitter: name
-        }
       }
     `
   )
 
-  const metaDescription = description || wp.generalSettings?.description
-  const defaultTitle = wp.generalSettings?.title
+  const [windowPath, setWindowPath] = useState("")
+  useEffect(() => {
+    if (isBrowser) {
+      setWindowPath(window.location.pathname)
+      // console.log(window.location.pathname)
+    }
+  }, [windowPath])
+
+  const metaDescription = description || generalSettings?.description
+  const defaultTitle = generalSettings?.title
 
   return (
     <Helmet
@@ -38,7 +45,9 @@ const Seo = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={
+        windowPath === "/" ? `Home | ${defaultTitle}` : `%s | ${defaultTitle}`
+      }
       meta={[
         {
           name: `description`,
@@ -60,10 +69,7 @@ const Seo = ({ description, lang, meta, title }) => {
           name: `twitter:card`,
           content: `summary`,
         },
-        {
-          name: `twitter:creator`,
-          content: wpUser?.twitter || ``,
-        },
+
         {
           name: `twitter:title`,
           content: title,

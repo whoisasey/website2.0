@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
+import Seo from "../components/seo"
 import Left from "../images/left_arrow.png"
 import Right from "../images/right_arrow.png"
 
@@ -9,7 +10,7 @@ const Showcase = ({
   pageContext,
   data: {
     wpShowcase: {
-      showcaseGallery: { columns, nextPage, previousPage, imageGallery },
+      showcaseGallery: { nextPage, previousPage, imageGallery },
     },
   },
 }) => {
@@ -17,6 +18,7 @@ const Showcase = ({
 
   return (
     <Layout>
+      <Seo title={pageContext.title} />
       <div className="project_wrapper">
         <h1>{pageContext.title}</h1>
         <div className={`block_gallery columns_2`}>
@@ -61,7 +63,6 @@ export const query = graphql`
   query singleShowcaseQueryAndSingleShowcaseQuery($slug: String) {
     wpShowcase(slug: { eq: $slug }) {
       showcaseGallery {
-        columns
         nextPage {
           ... on WpShowcase {
             uri

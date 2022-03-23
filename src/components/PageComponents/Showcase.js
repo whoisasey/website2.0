@@ -1,15 +1,29 @@
-import React, { Fragment } from "react"
+import React, { Fragment, useState, useEffect } from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { sortedNodes } from "../../helpers"
+import Seo from "../seo"
 
-const Showcase = () => {
+const Showcase = ({ name }) => {
   const {
     allWpShowcase: { nodes },
   } = useStaticQuery(query)
 
+  const [texture, setTexture] = useState(false)
+  // console.log(nodes.length)
+
+  useEffect(() => {
+    if (nodes.length % 3) {
+      console.log("not equal")
+      setTexture(true)
+    }
+  }, [])
+
+  const addTexture = () => {}
+
   return (
     <Fragment>
+      <Seo title={name} />
       <section className="container showcase">
         <h1>Showcase</h1>
         <div className={` block_gallery `}>

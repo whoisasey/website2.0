@@ -1,6 +1,7 @@
+import React from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import React from "react"
+import Seo from "../components/seo"
 import Layout from "../components/layout"
 import Left from "../images/left_arrow.png"
 import Right from "../images/right_arrow.png"
@@ -22,6 +23,7 @@ const Portfolio = ({
   const image = getImage(localFile)
   return (
     <Layout>
+      <Seo title={pageContext.title} />
       <section className="service_wrapper">
         <h1>{pageContext.title}</h1>
         <p>{description}</p>

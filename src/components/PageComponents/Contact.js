@@ -1,14 +1,15 @@
 import React, { Fragment } from "react"
 import { graphql, useStaticQuery } from "gatsby"
-
+import Seo from "../seo"
 import { BlockRenderer } from "../Blocks/BlockRenderer"
 
-const Contact = () => {
+const Contact = ({ name }) => {
   const {
     wpPage: { blocks },
   } = useStaticQuery(query)
   return (
     <Fragment>
+      <Seo title={name} />
       <div className="form_container">
         <div className="">
           <h1>Contact Us</h1>

@@ -1,15 +1,17 @@
 import React, { Fragment } from "react"
+import Seo from "../seo"
 import { sortedNodes } from "../../helpers"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-const Services = () => {
+const Services = ({ name }) => {
   const {
     allWpService: { nodes },
   } = useStaticQuery(query)
 
   return (
     <Fragment>
+      <Seo title={name} />
       <section className="container services_gallery">
         <h1>Services</h1>
         <div className="block_gallery columns_2">
