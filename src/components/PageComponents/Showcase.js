@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react"
+import React, { Fragment } from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { sortedNodes } from "../../helpers"
@@ -9,17 +9,56 @@ const Showcase = ({ name }) => {
     allWpShowcase: { nodes },
   } = useStaticQuery(query)
 
-  const [texture, setTexture] = useState(false)
-  // console.log(nodes.length)
-
-  useEffect(() => {
-    if (nodes.length % 3) {
-      console.log("not equal")
-      setTexture(true)
-    }
-  }, [])
-
-  const addTexture = () => {}
+  const addOneTexture = () => {
+    if (nodes.length % 3 === 2)
+      return (
+        <div className="blocks_gallery_item">
+          <div>
+            <li>
+              <figure>
+                <img
+                  src="https://bigbuilds.ca/wp-content/uploads/2022/03/david-clode-pla5ZKH-2k4-unsplash-scaled.jpg"
+                  alt=""
+                />
+              </figure>
+            </li>
+          </div>
+        </div>
+      )
+    return null
+  }
+  const addTwoTextures = () => {
+    if (nodes.length % 3 === 1)
+      return (
+        <Fragment>
+          <div className="blocks_gallery_item">
+            <div>
+              <li>
+                <figure>
+                  <img
+                    src="https://bigbuilds.ca/wp-content/uploads/2022/03/derick-mckinney-VFSlkhMIjEs-unsplash-scaled.jpg"
+                    alt=""
+                  />
+                </figure>
+              </li>
+            </div>
+          </div>
+          <div className="blocks_gallery_item">
+            <div>
+              <li>
+                <figure>
+                  <img
+                    src="https://bigbuilds.ca/wp-content/uploads/2022/03/marina-reich-0F5ircXar2g-unsplash-scaled.jpg"
+                    alt=""
+                  />
+                </figure>
+              </li>
+            </div>
+          </div>
+        </Fragment>
+      )
+    return null
+  }
 
   return (
     <Fragment>
@@ -77,6 +116,8 @@ const Showcase = ({ name }) => {
                   // show texture if 2 or 3 in row is empty
                 }
               )}
+            {addOneTexture()}
+            {addTwoTextures()}
           </ul>
         </div>
       </section>
