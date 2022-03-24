@@ -20,6 +20,13 @@ module.exports = {
         presets: null,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `textures`,
+        path: `${__dirname}/src/images/textures/`,
+      },
+    },
 
     {
       resolve: `gatsby-plugin-sass`,

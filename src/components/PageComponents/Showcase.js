@@ -3,25 +3,23 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { sortedNodes } from "../../helpers"
 import Seo from "../seo"
-
-const textures = [
-  "https://bigbuilds.ca/wp-content/uploads/2022/03/david-clode-pla5ZKH-2k4-unsplash-scaled.jpg",
-  "https://bigbuilds.ca/wp-content/uploads/2022/03/marina-reich-0F5ircXar2g-unsplash-scaled.jpg",
-  "https://bigbuilds.ca/wp-content/uploads/2022/03/derick-mckinney-VFSlkhMIjEs-unsplash-scaled.jpg",
-]
+import { randomize } from "../../helpers"
 
 const Showcase = ({ name }) => {
   const {
     allWpShowcase: { nodes },
+    allFile: { edges },
   } = useStaticQuery(query)
+  const textures = randomize(edges, 3)
 
   const addOneTexture = () => {
+    const image = getImage(textures[2].node)
     if (nodes.length % 3 === 2)
       return (
         <div className="blocks_gallery_item">
           <li>
             <figure>
-              <img src={textures[2]} alt="" />
+              <GatsbyImage image={image} />
             </figure>
           </li>
         </div>
@@ -31,12 +29,13 @@ const Showcase = ({ name }) => {
   const addTwoTextures = () => {
     if (nodes.length % 3 === 1) {
       textures.pop()
-      return textures.map((texture, i) => {
+      return textures.map(texture => {
+        const image = getImage(texture.node)
         return (
-          <div className="blocks_gallery_item" key={i}>
+          <div className="blocks_gallery_item" key={texture.id}>
             <li>
               <figure>
-                <img src={texture} alt="" />
+                <GatsbyImage image={image} />
               </figure>
             </li>
           </div>
@@ -108,7 +107,7 @@ const Showcase = ({ name }) => {
 }
 
 export const query = graphql`
-  query allShowcaseQuery {
+  query allShowcaseQueryAndTexturesQuery {
     allWpShowcase(sort: { fields: date, order: DESC }) {
       nodes {
         title
@@ -131,6 +130,23 @@ export const query = graphql`
                 }
               }
             }
+          }
+        }
+      }
+    }
+    allFile(
+      filter: {
+        dir: {
+          eq: "/Users/atina/Documents/other-web-stuff/bigbuilds2.0/src/images/textures"
+        }
+      }
+    ) {
+      edges {
+        node {
+          id
+          relativePath
+          childImageSharp {
+            gatsbyImageData
           }
         }
       }
