@@ -17,7 +17,7 @@ const Showcase = ({ name }) => {
             <li>
               <figure>
                 <img
-                  src="https://bigbuilds.ca/wp-content/uploads/2022/03/david-clode-pla5ZKH-2k4-unsplash-scaled.jpg"
+                  src="https://bigbuilds.ca/wp-content/uploads/2022/03/marina-reich-0F5ircXar2g-unsplash-scaled.jpg"
                   alt=""
                 />
               </figure>
@@ -48,7 +48,7 @@ const Showcase = ({ name }) => {
               <li>
                 <figure>
                   <img
-                    src="https://bigbuilds.ca/wp-content/uploads/2022/03/marina-reich-0F5ircXar2g-unsplash-scaled.jpg"
+                    src="https://bigbuilds.ca/wp-content/uploads/2022/03/david-clode-pla5ZKH-2k4-unsplash-scaled.jpg"
                     alt=""
                   />
                 </figure>
