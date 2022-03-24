@@ -103,6 +103,7 @@ footer {
   footer {
     .footer_feed {
       width: calc((150px) * 6);
+      margin: 0 auto;
 
       li {
         &:nth-child(11),
@@ -111,7 +112,9 @@ footer {
         }
       }
     }
-
+    .footer_logo {
+      margin-left: 2rem;
+    }
     .footer_icon {
       flex-direction: row;
 
