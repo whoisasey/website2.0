@@ -1,8 +1,6 @@
 import React from "react"
 import { Heading } from "../Heading"
 import { Paragraph } from "../Paragraph"
-import { Gallery } from "../Gallery"
-import { Quote } from "../Quotes"
 
 export const Component = ({
   name,
@@ -33,6 +31,4 @@ Component.displayName = "BlockRenderer"
 const componentMapping = {
   "core/heading": Heading,
   "core/paragraph": Paragraph,
-  "core/gallery": Gallery,
-  "core/quote": Quote,
 }
