@@ -4,6 +4,12 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 import { sortedNodes } from "../../helpers"
 import Seo from "../seo"
 
+const textures = [
+  "https://bigbuilds.ca/wp-content/uploads/2022/03/david-clode-pla5ZKH-2k4-unsplash-scaled.jpg",
+  "https://bigbuilds.ca/wp-content/uploads/2022/03/marina-reich-0F5ircXar2g-unsplash-scaled.jpg",
+  "https://bigbuilds.ca/wp-content/uploads/2022/03/derick-mckinney-VFSlkhMIjEs-unsplash-scaled.jpg",
+]
+
 const Showcase = ({ name }) => {
   const {
     allWpShowcase: { nodes },
@@ -13,51 +19,30 @@ const Showcase = ({ name }) => {
     if (nodes.length % 3 === 2)
       return (
         <div className="blocks_gallery_item">
-          <div>
+          <li>
+            <figure>
+              <img src={textures[2]} alt="" />
+            </figure>
+          </li>
+        </div>
+      )
+  }
+
+  const addTwoTextures = () => {
+    if (nodes.length % 3 === 1) {
+      textures.pop()
+      return textures.map((texture, i) => {
+        return (
+          <div className="blocks_gallery_item" key={i}>
             <li>
               <figure>
-                <img
-                  src="https://bigbuilds.ca/wp-content/uploads/2022/03/marina-reich-0F5ircXar2g-unsplash-scaled.jpg"
-                  alt=""
-                />
+                <img src={texture} alt="" />
               </figure>
             </li>
           </div>
-        </div>
-      )
-    return null
-  }
-  const addTwoTextures = () => {
-    if (nodes.length % 3 === 1)
-      return (
-        <Fragment>
-          <div className="blocks_gallery_item">
-            <div>
-              <li>
-                <figure>
-                  <img
-                    src="https://bigbuilds.ca/wp-content/uploads/2022/03/derick-mckinney-VFSlkhMIjEs-unsplash-scaled.jpg"
-                    alt=""
-                  />
-                </figure>
-              </li>
-            </div>
-          </div>
-          <div className="blocks_gallery_item">
-            <div>
-              <li>
-                <figure>
-                  <img
-                    src="https://bigbuilds.ca/wp-content/uploads/2022/03/david-clode-pla5ZKH-2k4-unsplash-scaled.jpg"
-                    alt=""
-                  />
-                </figure>
-              </li>
-            </div>
-          </div>
-        </Fragment>
-      )
-    return null
+        )
+      })
+    }
   }
 
   return (
@@ -101,19 +86,16 @@ const Showcase = ({ name }) => {
 
                   return (
                     <div className="blocks_gallery_item" key={databaseId}>
-                      <div>
-                        <li>
-                          <figure>
-                            <GatsbyImage image={image} alt={title} />
-                          </figure>
-                        </li>
-                        <div className="showcase_overlay">
-                          <h3>{title}</h3>
-                        </div>
+                      <li>
+                        <figure>
+                          <GatsbyImage image={image} alt={title} />
+                        </figure>
+                      </li>
+                      <div className="showcase_overlay">
+                        <h3>{title}</h3>
                       </div>
                     </div>
                   )
-                  // show texture if 2 or 3 in row is empty
                 }
               )}
             {addOneTexture()}
