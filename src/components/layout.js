@@ -72,10 +72,12 @@ const Layout = ({ children }) => {
         <main>{children}</main>
       </div>
       <footer className="container">
-        <div className="footer_feed">
-          {instagramFeed()}
-          {fakeFeed()}
-        </div>
+        {isPage === "/" ? (
+          <div className="footer_feed">
+            {instagramFeed()}
+            {fakeFeed()}
+          </div>
+        ) : null}
         <div className="footer_logo">
           <img src={Logo} alt="Big Builds Dark Signature Logo" />
           <a href="tel:647-456-4956">

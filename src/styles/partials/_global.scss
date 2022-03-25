@@ -97,14 +97,6 @@ li {
 }
 
 @media (min-width: 480px) {
-  .wrapper,
-  .service_wrapper,
-  .container,
-  .form_container {
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 90%;
-  }
   .buttons.component_wrapper {
     width: 90%;
     margin: 0 auto;
@@ -125,18 +117,6 @@ li {
 }
 
 @media (min-width: 810px) {
-  // .buttons.component_wrapper {
-  //   width: 80%;
-  // }
-  .wrapper,
-  .service_wrapper,
-  .container,
-  .form_container {
-    max-width: 1400px;
-    margin: 0 3rem;
-    width: 90%;
-  }
-
   .buttons {
     a {
       font-size: initial;
