@@ -97,8 +97,8 @@ const Showcase = ({ name }) => {
                   )
                 }
               )}
-            {addOneTexture()}
-            {addTwoTextures()}
+            {/* {addOneTexture()}
+            {addTwoTextures()} */}
           </ul>
         </div>
       </section>
