@@ -3,46 +3,11 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import { sortedNodes } from "../../helpers"
 import Seo from "../seo"
-import { randomize } from "../../helpers"
 
 const Showcase = ({ name }) => {
   const {
     allWpShowcase: { nodes },
-    allFile: { edges },
   } = useStaticQuery(query)
-  const textures = randomize(edges, 3)
-
-  const addOneTexture = () => {
-    const image = getImage(textures[2].node)
-    if (nodes.length % 3 === 2)
-      return (
-        <div className="blocks_gallery_item">
-          <li>
-            <figure>
-              <GatsbyImage image={image} />
-            </figure>
-          </li>
-        </div>
-      )
-  }
-
-  const addTwoTextures = () => {
-    if (nodes.length % 3 === 1) {
-      textures.pop()
-      return textures.map(texture => {
-        const image = getImage(texture.node)
-        return (
-          <div className="blocks_gallery_item" key={texture.id}>
-            <li>
-              <figure>
-                <GatsbyImage image={image} />
-              </figure>
-            </li>
-          </div>
-        )
-      })
-    }
-  }
 
   return (
     <Fragment>
@@ -97,8 +62,6 @@ const Showcase = ({ name }) => {
                   )
                 }
               )}
-            {/* {addOneTexture()}
-            {addTwoTextures()} */}
           </ul>
         </div>
       </section>
@@ -130,23 +93,6 @@ export const query = graphql`
                 }
               }
             }
-          }
-        }
-      }
-    }
-    allFile(
-      filter: {
-        dir: {
-          eq: "/Users/atina/Documents/other-web-stuff/bigbuilds2.0/src/images/textures"
-        }
-      }
-    ) {
-      edges {
-        node {
-          id
-          relativePath
-          childImageSharp {
-            gatsbyImageData
           }
         }
       }
