@@ -11,10 +11,10 @@ const Homepage = ({
   data: {
     wpPage: {
       valuesGroup: { valuesTitle, valuesDescription },
-      quickLinks: { linkFour, linkOne, linkTwo, linkThree },
       heroTextAndImage: { fullWidthImage, heroText },
       customButton,
     },
+    allWpService: { nodes },
   },
 }) => {
   const image = getImage(fullWidthImage.localFile)
@@ -53,26 +53,11 @@ const Homepage = ({
       </section>
 
       <section className="services_links">
-        {linkOne.link ? (
-          <h2>
-            <Link to={linkOne.link.uri}>{linkOne.title}</Link>
+        {nodes.map(({ uri, title, id }) => (
+          <h2 key={id}>
+            <Link to={uri}>{title}</Link>
           </h2>
-        ) : null}
-        {linkTwo.link ? (
-          <h2>
-            <Link to={linkTwo.link.uri}>{linkTwo.title} </Link>
-          </h2>
-        ) : null}
-        {linkThree.link ? (
-          <h2>
-            <Link to={linkThree.link.uri}>{linkThree.title} </Link>
-          </h2>
-        ) : null}
-        {linkFour.link ? (
-          <h2>
-            <Link to={linkFour.link.uri}>{linkFour.title}</Link>
-          </h2>
-        ) : null}
+        ))}
       </section>
 
       <Cover {...customButton} />
@@ -81,7 +66,7 @@ const Homepage = ({
 }
 
 export const query = graphql`
-  query homepageQuery {
+  query homepageAndServicesQuery {
     wpPage(isFrontPage: { eq: true }) {
       heroTextAndImage {
         heroText {
@@ -110,40 +95,6 @@ export const query = graphql`
         }
         valuesDescription
       }
-      quickLinks {
-        linkFour {
-          link {
-            ... on WpService {
-              uri
-            }
-          }
-          title
-        }
-        linkOne {
-          link {
-            ... on WpService {
-              uri
-            }
-          }
-          title
-        }
-        linkThree {
-          link {
-            ... on WpService {
-              uri
-            }
-          }
-          title
-        }
-        linkTwo {
-          link {
-            ... on WpService {
-              uri
-            }
-          }
-          title
-        }
-      }
       customButton {
         backgroundColour
         buttonBackgroundColour
@@ -152,6 +103,13 @@ export const query = graphql`
         content
         contentHeader
         textColour
+      }
+    }
+    allWpService {
+      nodes {
+        id
+        title
+        uri
       }
     }
   }
