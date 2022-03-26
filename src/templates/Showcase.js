@@ -8,15 +8,13 @@ import Right from "../images/right_arrow.png"
 
 const Showcase = ({
   pageContext,
-  location: { state },
   data: {
     wpShowcase: {
-      showcaseGallery: { nextPage, previousPage, imageGallery },
+      showcaseGallery: { imageGallery },
     },
     allWpShowcase: { nodes },
   },
 }) => {
-  console.clear()
   const galleryArry = Object.entries(imageGallery)
   const [currentPost, setCurrentPost] = useState(0)
   const [nextPost, setNextPost] = useState(null)
@@ -28,13 +26,16 @@ const Showcase = ({
     })
     setNextPost(getNextPost())
     setPrevPost(getPrevPost())
-  }, [prevPost, nextPost])
+  }, [])
 
+  const lastPost = nodes[nodes.length - 1]
   const getNextPost = () => {
+    if (nodes[currentPost + 1] === undefined) {
+      return nodes[0]
+    }
     return nodes[currentPost + 1]
   }
 
-  const lastPost = nodes[nodes.length - 1]
   const getPrevPost = () => {
     // if index = 0, go to last node
     if (currentPost === 0) {
@@ -67,18 +68,16 @@ const Showcase = ({
           </ul>
         </div>
         <section className="buttons">
-          {!previousPage ? <div /> : null}
-          {/* add dynamically generated based on index +- 1 */}
-          {previousPage ? (
-            <Link to={previousPage.uri} className="prev_page">
-              <img src={Left} alt="" />
-              {previousPage.title}
+          {prevPost ? (
+            <Link to={prevPost.uri} className="prev_page">
+              <img src={Left} alt="left arrow" />
+              {prevPost.title}
             </Link>
           ) : null}
-          {nextPage ? (
-            <Link to={nextPage.uri} className="next_page">
-              {nextPage.title}
-              <img src={Right} alt="" />
+          {nextPost ? (
+            <Link to={nextPost.uri} className="next_page">
+              {nextPost.title}
+              <img src={Right} alt="right arrow" />
             </Link>
           ) : null}
         </section>
@@ -90,18 +89,6 @@ export const query = graphql`
   query singleShowcaseQueryAndAllShowcaseQuery($slug: String) {
     wpShowcase(slug: { eq: $slug }) {
       showcaseGallery {
-        nextPage {
-          ... on WpShowcase {
-            uri
-            title
-          }
-        }
-        previousPage {
-          ... on WpShowcase {
-            title
-            uri
-          }
-        }
         imageGallery {
           image1 {
             localFile {
