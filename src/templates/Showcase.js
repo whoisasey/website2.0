@@ -24,25 +24,27 @@ const Showcase = ({
     nodes.filter((node, id) => {
       if (node.title === pageContext.title) setCurrentPost(id)
     })
-    setNextPost(getNextPost())
-    setPrevPost(getPrevPost())
-  }, [])
 
-  const lastPost = nodes[nodes.length - 1]
-  const getNextPost = () => {
-    if (nodes[currentPost + 1] === undefined) {
-      return nodes[0]
+    const lastPost = nodes[nodes.length - 1]
+    const getNextPost = () => {
+      if (nodes[currentPost + 1] === undefined) {
+        return nodes[0]
+      }
+      return nodes[currentPost + 1]
     }
-    return nodes[currentPost + 1]
-  }
 
-  const getPrevPost = () => {
-    // if index = 0, go to last node
-    if (currentPost === 0) {
-      return lastPost
-      // else, return nodes[-1]
-    } else return nodes[currentPost - 1]
-  }
+    const getPrevPost = () => {
+      // if index = 0, go to last node
+      if (currentPost === 0) {
+        return lastPost
+        // else, return nodes[-1]
+      } else return nodes[currentPost - 1]
+    }
+    return () => {
+      setNextPost(getNextPost())
+      setPrevPost(getPrevPost())
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Layout>
