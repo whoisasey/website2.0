@@ -21,7 +21,6 @@ const Contact = ({ name }) => {
             )
           })}
           <hr />
-          <p>Toronto, Canada </p>
         </div>
       </div>
     </Fragment>

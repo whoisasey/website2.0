@@ -17,12 +17,12 @@ const Services = ({ name }) => {
         <div className="block_gallery columns_2">
           <ul className="blocks_gallery_grid">
             {sortedNodes(nodes).map(
-              ({ uri, servicesPostType: { heading, image } }) => {
+              ({ uri, servicesPostType: { heading, image } }, i) => {
                 if (image === null) return null
                 else {
                   const src = getImage(image.localFile)
                   return (
-                    <div className="blocks_gallery_item">
+                    <div className="blocks_gallery_item" key={i}>
                       <Link to={uri}>
                         <li>
                           <figure>
