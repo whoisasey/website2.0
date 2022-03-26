@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Seo from "../components/seo"
 import Layout from "../components/layout"
 import Left from "../images/left_arrow.png"
 import Right from "../images/right_arrow.png"
+import { getNextPost, getPrevPost } from "../helpers"
 
 const Portfolio = ({
   pageContext,
@@ -14,13 +15,25 @@ const Portfolio = ({
         description,
         heading,
         image: { localFile },
-        nextPage,
-        previousPage,
       },
     },
+    allWpService: { nodes },
   },
 }) => {
+  const [currentPost, setCurrentPost] = useState(0)
+  const [nextPost, setNextPost] = useState(null)
+  const [prevPost, setPrevPost] = useState(null)
   const image = getImage(localFile)
+
+  useEffect(() => {
+    nodes.filter((node, id) => {
+      if (node.title === pageContext.title) setCurrentPost(id)
+    })
+
+    setNextPost(getNextPost(nodes, currentPost))
+    setPrevPost(getPrevPost(nodes, currentPost))
+  }, [nextPost, prevPost])
+
   return (
     <Layout>
       <Seo title={pageContext.title} />
@@ -33,17 +46,16 @@ const Portfolio = ({
       </section>
 
       <section className="buttons component_wrapper">
-        {!previousPage ? <div /> : null}
-        {previousPage ? (
-          <Link to={previousPage.uri} className="prev_page">
-            <img src={Left} alt="" />
-            {previousPage.title}
+        {prevPost ? (
+          <Link to={prevPost.uri} className="prev_page">
+            <img src={Left} alt="left arrow" />
+            {prevPost.title}
           </Link>
         ) : null}
-        {nextPage ? (
-          <Link to={nextPage.uri} className="next_page">
-            {nextPage.title}
-            <img src={Right} alt="" />
+        {nextPost ? (
+          <Link to={nextPost.uri} className="next_page">
+            {nextPost.title}
+            <img src={Right} alt="right arrow" />
           </Link>
         ) : null}
       </section>
@@ -52,7 +64,7 @@ const Portfolio = ({
 }
 
 export const query = graphql`
-  query singleServiceQuery($slug: String) {
+  query singleServiceAndAllServiceQuery($slug: String) {
     wpService(slug: { eq: $slug }) {
       servicesPostType {
         button {
@@ -69,18 +81,12 @@ export const query = graphql`
             }
           }
         }
-        nextPage {
-          ... on WpService {
-            uri
-            title
-          }
-        }
-        previousPage {
-          ... on WpService {
-            uri
-            title
-          }
-        }
+      }
+    }
+    allWpService {
+      nodes {
+        title
+        uri
       }
     }
   }
