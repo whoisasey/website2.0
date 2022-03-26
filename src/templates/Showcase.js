@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
@@ -8,13 +8,40 @@ import Right from "../images/right_arrow.png"
 
 const Showcase = ({
   pageContext,
+  location: { state },
   data: {
     wpShowcase: {
       showcaseGallery: { nextPage, previousPage, imageGallery },
     },
+    allWpShowcase: { nodes },
   },
 }) => {
+  console.clear()
   const galleryArry = Object.entries(imageGallery)
+  const [currentPost, setCurrentPost] = useState(0)
+  const [nextPost, setNextPost] = useState(null)
+  const [prevPost, setPrevPost] = useState(null)
+
+  useEffect(() => {
+    nodes.filter((node, id) => {
+      if (node.title === pageContext.title) setCurrentPost(id)
+    })
+    setNextPost(getNextPost())
+    setPrevPost(getPrevPost())
+  }, [prevPost, nextPost])
+
+  const getNextPost = () => {
+    return nodes[currentPost + 1]
+  }
+
+  const lastPost = nodes[nodes.length - 1]
+  const getPrevPost = () => {
+    // if index = 0, go to last node
+    if (currentPost === 0) {
+      return lastPost
+      // else, return nodes[-1]
+    } else return nodes[currentPost - 1]
+  }
 
   return (
     <Layout>
@@ -23,13 +50,13 @@ const Showcase = ({
         <h1>{pageContext.title}</h1>
         <div className={`block_gallery columns_2`}>
           <ul className="blocks_gallery_grid">
-            {galleryArry.map(image => {
+            {galleryArry.map((image, i) => {
               if (image[1] !== null) {
                 const file = image[1].localFile
                 const img = getImage(file)
 
                 return (
-                  <li className="blocks_gallery_item">
+                  <li className="blocks_gallery_item" key={i}>
                     <figure>
                       <GatsbyImage image={img} alt="" />
                     </figure>
@@ -41,7 +68,7 @@ const Showcase = ({
         </div>
         <section className="buttons">
           {!previousPage ? <div /> : null}
-
+          {/* add dynamically generated based on index +- 1 */}
           {previousPage ? (
             <Link to={previousPage.uri} className="prev_page">
               <img src={Left} alt="" />
@@ -60,7 +87,7 @@ const Showcase = ({
   )
 }
 export const query = graphql`
-  query singleShowcaseQueryAndSingleShowcaseQuery($slug: String) {
+  query singleShowcaseQueryAndAllShowcaseQuery($slug: String) {
     wpShowcase(slug: { eq: $slug }) {
       showcaseGallery {
         nextPage {
@@ -126,6 +153,12 @@ export const query = graphql`
             }
           }
         }
+      }
+    }
+    allWpShowcase {
+      nodes {
+        title
+        uri
       }
     }
   }
