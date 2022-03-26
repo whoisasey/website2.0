@@ -40,11 +40,10 @@ const Showcase = ({
         // else, return nodes[-1]
       } else return nodes[currentPost - 1]
     }
-    return () => {
-      setNextPost(getNextPost())
-      setPrevPost(getPrevPost())
-    }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    setNextPost(getNextPost())
+
+    setPrevPost(getPrevPost())
+  }, [nextPost, prevPost]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Layout>
@@ -144,7 +143,11 @@ export const query = graphql`
         }
       }
     }
-    allWpShowcase {
+    allWpShowcase(
+      filter: {
+        showcaseGallery: { imageGallery: { image2: { id: { ne: null } } } }
+      }
+    ) {
       nodes {
         title
         uri
