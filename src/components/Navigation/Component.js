@@ -58,23 +58,23 @@ export const Component = () => {
     <nav className={isPage === press ? `light_nav` : null}>
       <Link to="/">
         {isPage === press ? (
-          // <StaticImage
-          //   src="../../../assets/bigbuilds_light.svg"
-          //   alt="Big Builds Light Logo"
-          //   placeholder="tracedSVG"
-          //   layout="fixed"
-          //   width={300}
-          // />
-          <LightLogo />
+          <StaticImage
+            src="../../../assets/bigbuilds_light.svg"
+            alt="Big Builds Light Logo"
+            placeholder="tracedSVG"
+            layout="fixed"
+            width={300}
+          />
         ) : (
-          // <StaticImage
-          //   src="../../../assets/bigbuilds_dark.svg"
-          //   alt="Big Builds Dark Logo"
-          //   placeholder="tracedSVG"
-          //   layout="fixed"
-          //   width={300}
-          // />
-          <DarkLogo />
+          // <LightLogo />
+          <StaticImage
+            src="../../../assets/bigbuilds_dark.svg"
+            alt="Big Builds Dark Logo"
+            placeholder="tracedSVG"
+            layout="fixed"
+            width={300}
+          />
+          // <DarkLogo />
         )}
       </Link>
 
