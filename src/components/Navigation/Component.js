@@ -91,13 +91,14 @@ export const Component = () => {
         </div>
         <div className={`popout_menu ${isMenuPopoutOpen ? "open" : "closed"}`}>
           <div className="menu_close">
-            <StaticImage
+            {/* <StaticImage
               src="../../../assets/bigbuilds_dark.svg"
               alt="Big Builds Dark Logo"
               placeholder="tracedSVG"
               layout="fixed"
               width={300}
-            />
+            /> */}
+            <DarkLogo />
             <button
               onClick={handleCloseMenu}
               className="no_appearance"

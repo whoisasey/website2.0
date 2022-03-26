@@ -3,6 +3,7 @@ nav {
   justify-content: space-between;
   padding: 1rem;
   overflow: hidden;
+  align-items: center;
 
   svg,
   img {
@@ -43,9 +44,9 @@ nav {
   z-index: 1000;
 
   .menu_close {
-    svg {
+    button > svg {
       // max-width: 75px;
-      width: 50px;
+      width: 25px;
     }
   }
 
