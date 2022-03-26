@@ -7,6 +7,10 @@ footer {
     & > * {
       margin: 1rem 0;
     }
+
+    svg {
+      max-width: 50px;
+    }
   }
   img {
     width: 50px;

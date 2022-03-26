@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react"
 import { Navigation } from "../components/Navigation/index"
-import Logo from "../images/b_rbg-dark signature.png"
+import Logo from "../../assets/b_dark-01.svg"
 import { AiOutlineInstagram } from "react-icons/ai"
 
 const Layout = ({ children }) => {
@@ -79,7 +79,7 @@ const Layout = ({ children }) => {
           </div>
         ) : null}
         <div className="footer_logo">
-          <img src={Logo} alt="Big Builds Dark Signature Logo" />
+          <Logo />
           <a href="tel:647-456-4956">
             <p>647-456-4956</p>
           </a>
