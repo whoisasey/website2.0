@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Left from "../images/left_arrow.png"
 import Right from "../images/right_arrow.png"
+import { getNextPost, getPrevPost } from "../helpers"
 
 const Showcase = ({
   pageContext,
@@ -25,24 +26,8 @@ const Showcase = ({
       if (node.title === pageContext.title) setCurrentPost(id)
     })
 
-    const lastPost = nodes[nodes.length - 1]
-    const getNextPost = () => {
-      if (nodes[currentPost + 1] === undefined) {
-        return nodes[0]
-      }
-      return nodes[currentPost + 1]
-    }
-
-    const getPrevPost = () => {
-      // if index = 0, go to last node
-      if (currentPost === 0) {
-        return lastPost
-        // else, return nodes[-1]
-      } else return nodes[currentPost - 1]
-    }
-    setNextPost(getNextPost())
-
-    setPrevPost(getPrevPost())
+    setNextPost(getNextPost(nodes, currentPost))
+    setPrevPost(getPrevPost(nodes, currentPost))
   }, [nextPost, prevPost]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

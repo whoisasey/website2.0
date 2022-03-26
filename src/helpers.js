@@ -10,3 +10,19 @@ export const randomize = (array, num) => {
 
   return shuffled.slice(0, num)
 }
+
+export const getNextPost = (array, current) => {
+  if (array[current + 1] === undefined) {
+    return array[0]
+  } else return array[current + 1]
+}
+
+export const getPrevPost = (array, current) => {
+  const lastPost = array[array.length - 1]
+
+  // if index = 0, go to last node
+  if (current === 0) {
+    return lastPost
+    // else, return nodes[-1]
+  } else return array[current - 1]
+}
