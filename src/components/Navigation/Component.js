@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react"
 import { AiOutlineInstagram } from "react-icons/ai"
 import Hamburger from "../../../assets/hamburger.svg"
 import Close from "../../../assets/hamburger_close.svg"
+import LightLogo from "../../../assets/bigbuilds_light.svg"
+import DarkLogo from "../../../assets/bigbuilds_dark.svg"
 
 const query = graphql`
   query singleShowcaseQuery {
@@ -56,21 +58,23 @@ export const Component = () => {
     <nav className={isPage === press ? `light_nav` : null}>
       <Link to="/">
         {isPage === press ? (
-          <StaticImage
-            src="../../../assets/bigbuilds_light.svg"
-            alt="Big Builds Light Logo"
-            placeholder="tracedSVG"
-            layout="fixed"
-            width={300}
-          />
+          // <StaticImage
+          //   src="../../../assets/bigbuilds_light.svg"
+          //   alt="Big Builds Light Logo"
+          //   placeholder="tracedSVG"
+          //   layout="fixed"
+          //   width={300}
+          // />
+          <LightLogo />
         ) : (
-          <StaticImage
-            src="../../../assets/bigbuilds_dark.svg"
-            alt="Big Builds Dark Logo"
-            placeholder="tracedSVG"
-            layout="fixed"
-            width={300}
-          />
+          // <StaticImage
+          //   src="../../../assets/bigbuilds_dark.svg"
+          //   alt="Big Builds Dark Logo"
+          //   placeholder="tracedSVG"
+          //   layout="fixed"
+          //   width={300}
+          // />
+          <DarkLogo />
         )}
       </Link>
 

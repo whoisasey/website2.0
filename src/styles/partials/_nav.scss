@@ -4,8 +4,10 @@ nav {
   padding: 1rem;
   overflow: hidden;
 
+  svg,
   img {
-    width: 40%;
+    // width: 40%;
+    max-width: 300px;
   }
 
   ul {
@@ -16,12 +18,6 @@ nav {
       list-style-type: none;
       margin: 0 0.5rem;
     }
-  }
-
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 
