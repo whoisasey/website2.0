@@ -3,9 +3,10 @@ import { graphql, useStaticQuery } from "gatsby"
 import { BlockRenderer } from "../Blocks/BlockRenderer"
 import BackgroundImage from "gatsby-background-image"
 import { convertToBgImage } from "gbimage-bridge"
-import { getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import Seo from "../seo"
 
-const About = () => {
+const About = ({ name }) => {
   const {
     wpPage: {
       title,
@@ -25,6 +26,7 @@ const About = () => {
 
   return (
     <Fragment>
+      <Seo title={name} />
       <div className="container">
         <h1>{title}</h1>
         {blocks.map((block, i) => {
@@ -35,6 +37,7 @@ const About = () => {
           )
         })}
       </div>
+      {/* <GatsbyImage image={image} /> */}
       <BackgroundImage
         Tag="section"
         {...bgImage}
