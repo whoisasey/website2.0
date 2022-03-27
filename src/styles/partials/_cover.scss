@@ -15,6 +15,10 @@
   width: 100vw;
   margin: 2rem 0;
   padding: 5rem 3rem;
+
+  & > * {
+    margin-top: 1.5rem;
+  }
   h2 {
     font-weight: 400;
   }
@@ -26,7 +30,7 @@
 
   a {
     padding: 1.5rem 2rem;
-    margin: 1rem;
+    // margin: 1rem;
     margin-left: 0;
     display: inline-block;
     border: none;
