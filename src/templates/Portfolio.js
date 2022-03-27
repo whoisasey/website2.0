@@ -32,7 +32,7 @@ const Portfolio = ({
 
     setNextPost(getNextPost(nodes, currentPost))
     setPrevPost(getPrevPost(nodes, currentPost))
-  }, [nextPost, prevPost])
+  }, [nextPost, prevPost]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Layout>

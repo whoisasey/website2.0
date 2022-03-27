@@ -1,5 +1,4 @@
 import { graphql, Link, useStaticQuery } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
 import React, { useState, useEffect } from "react"
 import { AiOutlineInstagram } from "react-icons/ai"
 import Hamburger from "../../../assets/hamburger.svg"
@@ -56,27 +55,7 @@ export const Component = () => {
 
   return (
     <nav className={isPage === press ? `light_nav` : null}>
-      <Link to="/">
-        {isPage === press ? (
-          // <StaticImage
-          //   src="../../../assets/bigbuilds_light.svg"
-          //   alt="Big Builds Light Logo"
-          //   placeholder="tracedSVG"
-          //   layout="fixed"
-          //   width={300}
-          // />
-          <LightLogo />
-        ) : (
-          // <StaticImage
-          //   src="../../../assets/bigbuilds_dark.svg"
-          //   alt="Big Builds Dark Logo"
-          //   placeholder="tracedSVG"
-          //   layout="fixed"
-          //   width={300}
-          // />
-          <DarkLogo />
-        )}
-      </Link>
+      <Link to="/">{isPage === press ? <LightLogo /> : <DarkLogo />}</Link>
 
       <div className="mobile_nav">
         <div className="menu_open">
@@ -91,13 +70,6 @@ export const Component = () => {
         </div>
         <div className={`popout_menu ${isMenuPopoutOpen ? "open" : "closed"}`}>
           <div className="menu_close">
-            {/* <StaticImage
-              src="../../../assets/bigbuilds_dark.svg"
-              alt="Big Builds Dark Logo"
-              placeholder="tracedSVG"
-              layout="fixed"
-              width={300}
-            /> */}
             <DarkLogo />
             <button
               onClick={handleCloseMenu}

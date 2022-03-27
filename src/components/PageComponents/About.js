@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import { BlockRenderer } from "../Blocks/BlockRenderer"
 import BackgroundImage from "gatsby-background-image"
 import { convertToBgImage } from "gbimage-bridge"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { getImage } from "gatsby-plugin-image"
 import Seo from "../seo"
 
 const About = ({ name }) => {
@@ -37,7 +37,6 @@ const About = ({ name }) => {
           )
         })}
       </div>
-      {/* <GatsbyImage image={image} /> */}
       <BackgroundImage
         Tag="section"
         {...bgImage}
