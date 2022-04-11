@@ -10,9 +10,9 @@ const Contact = ({ name }) => {
   return (
     <Fragment>
       <Seo title={name} />
-      <div className="container">
+      <div className="container contact">
         <h1>Contact Us</h1>
-        <div className="contact">
+        <div>
           {blocks.map((block, i) => {
             return (
               <Fragment key={i}>
