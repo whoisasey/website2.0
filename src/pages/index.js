@@ -38,7 +38,11 @@ const Homepage = ({
           />
         </figure>
         <figure className="hero_desktop">
-          <GatsbyImage image={image} alt="" layout={"fullWidth"} />
+          <GatsbyImage
+            image={image}
+            alt="living space with furnishings"
+            layout={"fullWidth"}
+          />
         </figure>
       </div>
       <section className="wrapper">
