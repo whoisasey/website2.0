@@ -12,7 +12,6 @@ const Portfolio = ({
   data: {
     wpService: {
       servicesPostType: {
-        description,
         heading,
         image: { localFile },
       },
@@ -39,7 +38,6 @@ const Portfolio = ({
       <Seo title={pageContext.title} />
       <section className="service_wrapper">
         <h1>{pageContext.title}</h1>
-        <p>{description}</p>
       </section>
       <section>
         <GatsbyImage image={image} alt={heading} />
@@ -67,11 +65,6 @@ export const query = graphql`
   query singleServiceAndAllServiceQuery($slug: String) {
     wpService(slug: { eq: $slug }) {
       servicesPostType {
-        button {
-          title
-          url
-        }
-        description
         heading
         image {
           altText
