@@ -72,7 +72,7 @@ const Layout = ({ children }) => {
         <main>{children}</main>
       </div>
       <footer className="container">
-        {isPage === "/" ? (
+        {isPage === "/" || isPage === "/contact/" ? (
           <div className="footer_feed">
             {instagramFeed()}
             {fakeFeed()}
