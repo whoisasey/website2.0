@@ -44,7 +44,7 @@ const Services = ({ name }) => {
               <li>
                 <figure>
                   <img
-                    src="https://bigbuilds.ca/wp-content/uploads/2022/01/alex-perri-bmM_IdLd1SA-unsplash-scaled.jpeg"
+                    src="https://kargelbuilds.com/wp-content/uploads/2022/05/alex-perri-bmM_IdLd1SA-unsplash-1.jpg"
                     alt="green plant"
                   />
                 </figure>
