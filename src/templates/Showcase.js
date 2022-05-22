@@ -24,6 +24,7 @@ const Showcase = ({
   useEffect(() => {
     nodes.filter((node, id) => {
       if (node.title === pageContext.title) setCurrentPost(id)
+      return
     })
 
     setNextPost(getNextPost(nodes, currentPost))
