@@ -60,6 +60,8 @@ const Showcase = ({
               {prevPost.title}
             </Link>
           ) : null}
+          <Link to="/showcase/">All</Link>
+
           {nextPost ? (
             <Link to={nextPost.uri} className="next_page">
               {nextPost.title}
