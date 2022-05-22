@@ -11,7 +11,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: process.env.WPGRAPHQL_URL || `https://bigbuilds.ca/graphql`,
+        url: process.env.WPGRAPHQL_URL || `https://kargelbuilds.com/graphql`,
         // useACF: true,
         verboseOutput: true,
         type: {
