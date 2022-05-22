@@ -14,7 +14,7 @@
     Create a .env.development file at the root level and add this
 
     ```
-    - WPGRAPHQL_URL=https://bigbuilds.ca/graphql
+    - WPGRAPHQL_URL=https://kargelbuilds.com/graphql
     - GATSBY_INSTAGRAM_ID=GET THIS FROM GATSBY ENV VARIABLES
     - GATSBY_INSTAGRAM_TOKEN=GET THIS FROM GATSBY ENV VARIABLES
     ```
