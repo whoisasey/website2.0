@@ -8,12 +8,12 @@ import DarkLogo from "../../../assets/bigbuilds_dark.svg"
 
 const query = graphql`
   query singleShowcaseQuery {
-    wpMenu(locations: { in: GATSBY_HEADER_MENU }) {
+    wpMenu(locations: { eq: PRIMARY_MENU }) {
       menuItems {
         nodes {
           label
-          title
           id
+          title
           url
         }
       }
