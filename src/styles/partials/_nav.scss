@@ -85,6 +85,9 @@ nav {
 
 .mobile_nav {
   display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   // width: 100px;
   // height: 100px;
 

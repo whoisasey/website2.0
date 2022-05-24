@@ -45,7 +45,6 @@
   .blocks_gallery_item figure {
     position: relative;
     opacity: 0.5;
-    height: 250px;
     transition: 0.5s ease;
     width: 90vw;
   }
@@ -96,7 +95,7 @@
   }
 }
 
-@media (min-width: 810px) {
+@media (min-width: 768px) {
   .showcase,
   .services_gallery {
     .blocks_gallery_item figure {
