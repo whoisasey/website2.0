@@ -47,6 +47,7 @@
     opacity: 0.5;
     height: 250px;
     transition: 0.5s ease;
+    width: 90vw;
   }
 
   .blocks_gallery_item a,
@@ -88,12 +89,20 @@
       }
     }
   }
+  .services_gallery {
+    .blocks_gallery_item figure {
+      width: 90vw;
+    }
+  }
 }
 
 @media (min-width: 810px) {
-  .showcase .blocks_gallery_item figure,
-  .services_gallery .blocks_gallery_item figure {
-    height: 400px;
+  .showcase,
+  .services_gallery {
+    .blocks_gallery_item figure {
+      height: 400px;
+      width: inherit;
+    }
   }
   .project_wrapper {
     .block_gallery {
