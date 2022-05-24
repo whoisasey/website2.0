@@ -21,7 +21,7 @@ const Homepage = ({
 
   return (
     <Layout>
-      <Seo title="All posts" />
+      <Seo title="Home" />
 
       {createElement(
         `h${heroText.fontSize}`,
