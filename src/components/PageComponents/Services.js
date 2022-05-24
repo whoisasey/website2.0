@@ -2,7 +2,7 @@ import React, { Fragment } from "react"
 import Seo from "../seo"
 import { sortedNodes } from "../../helpers"
 import { graphql, useStaticQuery, Link } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 
 const Services = ({ name }) => {
   const {
@@ -43,10 +43,11 @@ const Services = ({ name }) => {
             <div className="blocks_gallery_item">
               <li>
                 <figure>
-                  <img
+                  <StaticImage src="https://kargelbuilds.com/wp-content/uploads/2022/05/alex-perri-bmM_IdLd1SA-unsplash-1.jpg" />
+                  {/* <img
                     src="https://kargelbuilds.com/wp-content/uploads/2022/05/alex-perri-bmM_IdLd1SA-unsplash-1.jpg"
                     alt="green plant"
-                  />
+                  /> */}
                 </figure>
               </li>
             </div>
