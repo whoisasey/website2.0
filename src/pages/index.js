@@ -49,14 +49,12 @@ const Homepage = ({
         </figure>
       </div>
       <section className="wrapper">
+        {createElement(`h${valuesTitle.fontsize}`, {}, valuesTitle.text)}
         {createElement(
-          `h${valuesTitle.fontsize}`,
-          {
-            className: "",
-          },
-          valuesTitle.text
+          "p",
+          { style: { paddingTop: "1.5rem" } },
+          parse(valuesDescription)
         )}
-        {parse(valuesDescription)}
       </section>
 
       <section className="services_links">
