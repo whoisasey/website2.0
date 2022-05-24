@@ -13,8 +13,7 @@ const query = graphql`
         nodes {
           label
           id
-          title
-          url
+          path
         }
       }
     }
@@ -33,10 +32,10 @@ export const Component = () => {
   const press = "/press/"
 
   const NavList = () => {
-    return nodes.map(({ label, url, id }) => {
+    return nodes.map(({ label, id, path }) => {
       return (
         <li key={id}>
-          <Link to={url}>{label}</Link>
+          <Link to={path}>{label}</Link>
         </li>
       )
     })
