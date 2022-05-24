@@ -21,7 +21,10 @@ const Homepage = ({
 
   return (
     <Layout>
-      <Seo title="Home" />
+      <Seo
+        title="Home"
+        description="Big Builds provides custom millwork solutions in the GTA"
+      />
 
       {createElement(
         `h${heroText.fontSize}`,

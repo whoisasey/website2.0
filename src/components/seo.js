@@ -39,8 +39,8 @@ const Seo = ({ description, lang, meta, title }) => {
     }
   }, [windowPath])
 
-  const metaDescription = siteMetadata?.description
-  const defaultTitle = siteMetadata?.title
+  const metaDescription = siteMetadata?.description || description
+  const defaultTitle = siteMetadata?.title || title
 
   return (
     <Helmet
@@ -48,6 +48,8 @@ const Seo = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={title}
+      description={metaDescription}
+      featuredImage="https://kargelbuilds.com/wp-content/uploads/2021/04/bigbuilds_rbg-dark-2.png"
       titleTemplate={
         windowPath === "/" ? `Home | ${defaultTitle}` : `%s | ${defaultTitle}`
       }
