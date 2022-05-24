@@ -11,28 +11,24 @@
     Navigate to your local repo and run `npm install`
 
 3.  **Local Environment**
-    Create a .env.development file at the root level and add this
+    Create a .env.development file at the root level and add the following (get from Gatsby Variables)
 
     ```
-    - WPGRAPHQL_URL=https://kargelbuilds.com/graphql
-    - GATSBY_INSTAGRAM_ID=GET THIS FROM GATSBY ENV VARIABLES
-    - GATSBY_INSTAGRAM_TOKEN=GET THIS FROM GATSBY ENV VARIABLES
+    - WPGRAPHQL_URL=
+    - GATSBY_INSTAGRAM_ID=
+    - GATSBY_INSTAGRAM_TOKEN=
     ```
+
+4.  **Updating The Instagram Token**
 
     **_IMPORTANT_**
-    Note: The Instagram Token has to be refreshed every 60 days. As of this update, please refresh it on May 22, 2022.
+    Note: The Instagram Token has to be refreshed every 60 days. As of this update, please refresh it on July 23, 2022.
 
-    Make sure you have a Facebook Developer account (Atina will invite you to the app), and make this request. Replace {long-lived-access-token} with the token from Gatsby
+    In the Facebook App, go to Instagram Basic Display > Basic Display > User Token Generator and Generate Token. Follow the prompts for your password.
 
-    ```
-    curl -i -X GET "https://graph.instagram.com/refresh_access_token
-    ?grant_type=ig_refresh_token
-    &access_token={long-lived-access-token}"
-    ```
+    - Once refreshed and tested, make sure to CHANGE the token from the Gatsby ENV Variables
 
-    Once refreshed and tested, make sure to CHANGE the token from the Gatsby ENV Variables
-
-4.  **Run locally**
+5.  **Run locally**
 
     ```
     git checkout staging
