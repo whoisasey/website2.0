@@ -8,6 +8,24 @@ const Layout = ({ children }) => {
   const [fakeImage, setFakeImage] = useState([])
   const [feed, setFeed] = useState([])
   const press = "/press/"
+  const [useScrollTop, setUseScrollTop] = useState(false)
+  const [showScroll, setShowScroll] = useState(false)
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+  useEffect(() => {
+    setUseScrollTop(true)
+
+    const checkScrollTop = () => {
+      if (!showScroll && window.pageYOffset > 400) {
+        setShowScroll(true)
+      } else if (showScroll && window.pageYOffset <= 400) {
+        setShowScroll(false)
+      }
+    }
+    window.addEventListener("scroll", checkScrollTop)
+  }, [useScrollTop, showScroll])
 
   useEffect(() => {
     setIsPage(window.location.pathname)
@@ -69,7 +87,19 @@ const Layout = ({ children }) => {
         <header>
           <Navigation />
         </header>
-        <main>{children}</main>
+        <main>
+          {children}
+          {useScrollTop ? (
+            <div
+              className="scroll__to__top"
+              onClick={scrollTop}
+              style={{ display: showScroll ? "flex" : "none" }}
+              role="none"
+            >
+              <p>&#8593;</p>
+            </div>
+          ) : null}
+        </main>
       </div>
       <footer className="container">
         {isPage === "/" || isPage === "/contact/" ? (

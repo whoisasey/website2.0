@@ -19,6 +19,15 @@ li {
   list-style-type: none;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .wrapper,
 .service_wrapper,
 .container,
@@ -55,7 +64,7 @@ li {
 
   a {
     font-size: $base-font-size * 0.8;
-    width: calc(40%);
+    // width: calc(40%);
   }
 }
 
@@ -95,7 +104,18 @@ li {
     margin-left: 0.5rem;
   }
 }
-
+.scroll__to__top {
+  z-index: 10000;
+  bottom: 1rem;
+  right: 1rem;
+  position: fixed;
+  cursor: pointer;
+  animation: fadeIn 0.8s ease-in-out;
+  p {
+    font-size: 2rem;
+    color: black;
+  }
+}
 @media (min-width: 480px) {
   .buttons.component_wrapper {
     width: 90%;
