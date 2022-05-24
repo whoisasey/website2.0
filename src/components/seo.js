@@ -14,14 +14,18 @@ const isBrowser = typeof window !== "undefined"
 
 const Seo = ({ description, lang, meta, title }) => {
   const {
-    wp: { generalSettings },
+    site: { siteMetadata, og, siteUrl },
   } = useStaticQuery(
     graphql`
       query {
-        wp {
-          generalSettings {
+        site {
+          siteMetadata {
             title
             description
+            og {
+              siteName
+            }
+            siteUrl
           }
         }
       }
@@ -32,12 +36,11 @@ const Seo = ({ description, lang, meta, title }) => {
   useEffect(() => {
     if (isBrowser) {
       setWindowPath(window.location.pathname)
-      // console.log(window.location.pathname)
     }
   }, [windowPath])
 
-  const metaDescription = description || generalSettings?.description
-  const defaultTitle = generalSettings?.title
+  const metaDescription = siteMetadata?.description
+  const defaultTitle = siteMetadata?.title
 
   return (
     <Helmet
@@ -64,19 +67,6 @@ const Seo = ({ description, lang, meta, title }) => {
         {
           property: `og:type`,
           content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
         },
       ].concat(meta)}
     />
