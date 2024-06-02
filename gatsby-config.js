@@ -11,7 +11,6 @@ module.exports = {
       siteName: "Big Builds",
     },
   },
-  flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     {
       resolve: `gatsby-source-wordpress`,
