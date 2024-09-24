@@ -26,3 +26,7 @@ export const getPrevPost = (array, current) => {
     // else, return nodes[-1]
   } else return array[current - 1]
 }
+
+export function renderCanonicalLink(frontmatter, siteUrl, location) {
+  return frontmatter?.canonical || siteUrl + location.pathname
+}

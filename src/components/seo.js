@@ -6,69 +6,45 @@
  */
 
 import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
+import { graphql, useStaticQuery } from "gatsby"
+
 import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import PropTypes from "prop-types"
+import { renderCanonicalLink } from "../helpers"
+import { useSiteMetadata } from "../hooks/use-site-metadata"
 
-const isBrowser = typeof window !== "undefined"
-
-const Seo = ({ description, lang, meta, title }) => {
-  const {
-    site: { siteMetadata, og, siteUrl },
-  } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            og {
-              siteName
-            }
-            siteUrl
-          }
-        }
-      }
-    `
-  )
-
-  const [windowPath, setWindowPath] = useState("")
-  useEffect(() => {
-    if (isBrowser) {
-      setWindowPath(window.location.pathname)
-    }
-  }, [windowPath])
-
-  const metaDescription = siteMetadata?.description || description
-  const defaultTitle = siteMetadata?.title || title
-
+function Seo({ title, description, tags, canonicalURL, lang }) {
+  const { siteMetadata } = useSiteMetadata()
+  const pageDescription = description || siteMetadata.description
+  const meta = []
+  const links = []
+  if (tags) {
+    // define META tags
+    meta.push({
+      name: "keywords",
+      content: tags.join(","),
+    })
+  }
+  if (canonicalURL) {
+    links.push({
+      rel: "canonical",
+      href: canonicalURL,
+    })
+  }
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
+      // define META title
       title={title}
-      description={metaDescription}
-      featuredImage="https://kargelbuilds.com/wp-content/uploads/2021/04/bigbuilds_rbg-dark-2.png"
-      titleTemplate={
-        windowPath === "/" ? `Home | ${defaultTitle}` : `%s | ${defaultTitle}`
-      }
+      titleTemplate={siteMetadata?.title ? `%s | ${siteMetadata.title}` : `%s`}
+      link={links}
       meta={[
+        // define META description
         {
           name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: defaultTitle,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
+          content: pageDescription,
         },
       ].concat(meta)}
     />
@@ -77,15 +53,14 @@ const Seo = ({ description, lang, meta, title }) => {
 
 Seo.defaultProps = {
   lang: `en`,
-  meta: [],
-  description: ``,
+  tags: [],
 }
-
 Seo.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
+  canonicalURL: PropTypes.string,
+  lang: PropTypes.string,
 }
 
 export default Seo

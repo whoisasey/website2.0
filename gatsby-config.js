@@ -24,7 +24,62 @@ module.exports = {
         presets: null,
       },
     },
-
+    {
+      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+      options: {
+        siteUrl: process.env.SITE_URL,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        output: "/",
+        query: `
+        {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allSitePage(
+            filter: {
+              path: { regex: "/^(?!/404/|/404.html|/dev-404-page/)/" }
+            }
+          ) {
+            nodes {
+              path
+            }
+          }
+        }
+        `,
+        resolvePages: ({ allSitePage: { nodes: allPages } }) => {
+          return allPages.map(page => {
+            return { ...page }
+          })
+        },
+        serialize: ({ path }) => {
+          return {
+            url: path,
+            changefreq: "weekly",
+            priority: 0.7,
+          }
+        },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: process.env.SITE_URL,
+        sitemap: process.env.SITE_URL + "/sitemap/sitemap-index.xml",
+        policy: [
+          {
+            userAgent: "*",
+            allow: "/",
+            disallow: ["/404"],
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-sass`,
       options: {

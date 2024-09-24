@@ -1,8 +1,9 @@
-import React, { createElement } from "react"
-import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import Image from "gatsby-image"
+import { Link, graphql } from "gatsby"
+import React, { createElement } from "react"
+
 import { Cover } from "../components/Blocks/Cover"
+import Image from "gatsby-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import parse from "html-react-parser"
